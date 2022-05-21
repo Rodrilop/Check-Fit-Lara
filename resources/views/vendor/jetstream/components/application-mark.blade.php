@@ -1,0 +1,1 @@
+<img src="{{ asset('img/checkfittxt.svg') }}" alt="" style="width:128px;">
