@@ -7,79 +7,41 @@ use Illuminate\Http\Request;
 
 class TreinoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return View('treino.index')->with('dados',Treino::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return View('treino.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Treino::create($request->all());
+        return View('treino.index')->with('dados',Treino::all());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Treino  $treino
-     * @return \Illuminate\Http\Response
-     */
     public function show(Treino $treino)
     {
-        //
+        return View('treino.show')->with('dados',$treino);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Treino  $treino
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Treino $treino)
     {
-        //
+        return View('treino.edit')->with('dados',$treino);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Treino  $treino
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Treino $treino)
     {
-        //
+        $treino->update( $request->all() );
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Treino  $treino
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Treino $treino)
     {
-        //
+        $treino->delete();
+        return View('treino.index')->with('dados',Treino::all());
     }
 }
