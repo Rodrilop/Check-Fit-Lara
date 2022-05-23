@@ -14,7 +14,7 @@ class CreateDietasTable extends Migration
     public function up()
     {
         Schema::create('dietas', function (Blueprint $table) {
-            $table->id('cd_dieta');
+            $table->id();
             $table->string('nm_dieta',150)->unique();
             $table->decimal('qt_alimento_dieta',4,2);
             $table->date('dt_inicio_dieta');

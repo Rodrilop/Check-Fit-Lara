@@ -14,7 +14,7 @@ class CreateTreinosTable extends Migration
     public function up()
     {
         Schema::create('treinos', function (Blueprint $table) {
-            $table->id('cd_treino');
+            $table->id();
             $table->string('nm_treino')->unique();
             $table->decimal('qt_repeticao_exercicio',3);
             $table->decimal('qt_carga_exercicio',3,2);

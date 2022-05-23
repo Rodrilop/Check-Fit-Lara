@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlimentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/alimento/novo', [AlimentoController::class, 'create']);
+Route::post('/alimento/novo', [AlimentoController::class, 'store'])->name('salvar_alimento');
+Route::get('/alimento/ver', [AlimentoController::class, 'show']);
+Route::get('/alimento/del/{id}', [AlimentoController::class, 'destroy'])->name('excluir_alimento');
+Route::get('/alimento/edit/{id}', [AlimentoController::class, 'edit'])->name('editar_alimento');
+Route::post('/alimento/edit/{id}', [AlimentoController::class, 'update'])->name('atualizar_alimento');
 
 Route::middleware([
     'auth:sanctum',
