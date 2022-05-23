@@ -7,79 +7,41 @@ use Illuminate\Http\Request;
 
 class DietaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return View('dieta.index')->with('dados',Dieta::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return View('dieta.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        Dieta::create($request->all());
+        return View('dieta.index')->with('dados',Dieta::all());
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Dieta  $dieta
-     * @return \Illuminate\Http\Response
-     */
     public function show(Dieta $dieta)
     {
-        //
+        return View('dieta.show')->with('dados',$dieta);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Dieta  $dieta
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Dieta $dieta)
     {
-        //
+        return View('dieta.edit')->with('dados',$dieta);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Dieta  $dieta
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Dieta $dieta)
     {
-        //
+        $dieta->update( $request->all() );
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Dieta  $dieta
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Dieta $dieta)
     {
-        //
+        $dieta->delete();
+        return View('dieta.index')->with('dados',Dieta::all());
     }
 }
