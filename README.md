@@ -17,14 +17,6 @@ instale o pack jetstream com o framework livewire
 php artisan jetstream:install livewire
 ~~~
 
-instale e rode a biblioteca npm em ambiente de desebvolvimento
-~~~npm
-npm install
-~~~
-~~~npm
-npm run dev
-~~~
-
 Gere uma chave para rodar a aplicação
 ~~~php
 php artisan key:generate
