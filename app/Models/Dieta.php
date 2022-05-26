@@ -9,7 +9,6 @@ class Dieta extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'cd_dieta',
         'nm_dieta',
         'qt_alimento_dieta',
         'dt_inicio_dieta',

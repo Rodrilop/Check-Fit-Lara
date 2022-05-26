@@ -3,11 +3,11 @@
         <x-jet-application-logo class="block h-12 w-auto" />
     </div>
 
-    <div class="mt-8 text-2xl">
+    <div class="mt-8 text-2xl text-center">
         Bem Vindo ao Check Fit!
     </div>
 
-    <div class="mt-6 text-gray-500">
+    <div class="mt-6 text-gray-500 text-center">
     O sistema Check Fit é um aplicativo de acompanhamento do desempenho de performance física. 
     Esse aplicativo busca facilitar a preparação e o acompanhamento de treinos físicos e 
     acompanhamentos alimentares.

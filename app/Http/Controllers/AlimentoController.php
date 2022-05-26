@@ -4,40 +4,48 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alimento;
+use App\Http\Requests\StoreAlimentoRequest;
+use App\Http\Requests\UpdateAlimentoRequest;
 
 class AlimentoController extends Controller
 {
-    public function create(){
-        return view('alimento.create');
+    public function index()
+    {
+        $alimento = Alimento::all();
+
+        return view('alimento.index', compact('alimento'));
     }
-    public function store(Request $request){
-        Alimento::create([
-            'nm_alimento' => $request->nm_alimento,
-            'ds_alimento' => $request->ds_alimento,
-            'nm_categoria_alimento' => $request->nm_categoria_alimento,
-        ]);
-        return "Alimento salvo com sucesso";
+
+    public function create()
+    {
+        return View('alimento.create');
     }
-    public function show(){
-        $alimentos = Alimento::all();
-        return view('alimento.todos',['alimentos' => $alimentos]);
+
+    public function store(StoreAlimentoRequest $request)
+    {
+        Alimento::create($request->all());
+        return redirect()->route('alimento.index');
     }
-    public function destroy($id){
-        $alimento=Alimento::findOrFail($id);
+
+    public function show(Alimento $alimento)
+    {
+        return view('alimento.show', compact('alimento'));
+    }
+
+    public function edit(Alimento $alimento)
+    {
+        return view('alimento.edit', compact('alimento'));
+    }
+
+    public function update(UpdateAlimentoRequest $request, Alimento $alimento)
+    {
+        $alimento->update($request->all());
+        return redirect()->route('alimento.index');
+    }
+
+    public function destroy(Alimento $alimento)
+    {
         $alimento->delete();
-        return "Alimento excluído com sucesso.";
-    }
-    public function edit($id){
-        $alimento = Alimento::findOrFail($id);
-        return view('alimento.editar', ['alimento' => $alimento]);
-    }
-    public function update(Request $request, $id){
-        $alimento = Alimento::findOrFail($id);
-        $alimento->update([
-            'nm_alimento' => $request->nm_alimento,
-            'ds_alimento' => $request->ds_alimento,
-            'nm_categoria_alimento' => $request->nm_categoria_alimento,
-        ]);
-        return "Alimento atualizado com sucesso.";
+        return redirect()->route('alimento.index');
     }
 }

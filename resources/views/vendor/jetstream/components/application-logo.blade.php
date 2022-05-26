@@ -1,1 +1,1 @@
-<img src="{{ asset('img/checkfit.png') }}" alt="" style="width:300px;">
+<img src="{{ asset('img/checkfit.png') }}" class="img-fluid" alt="Imagem responsiva">

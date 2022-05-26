@@ -9,7 +9,6 @@ class Treino extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'cd_treino',
         'nm_treino',
         'qt_repeticao_exercicio',
         'qt_carga_exercicio',

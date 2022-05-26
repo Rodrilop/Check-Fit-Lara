@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exercicio;
 use Illuminate\Http\Request;
+use App\Models\Exercicio;
+use App\Http\Requests\StoreExercicioRequest;
+use App\Http\Requests\UpdateExercicioRequest;
 
 class ExercicioController extends Controller
 {
     public function index()
     {
-        return View('exercicio.index')->with('dados',Exercicio::all());
+        $exercicio = Exercicio::all();
+
+        return view('exercicio.index', compact('exercicio'));
     }
 
     public function create()
@@ -17,31 +21,31 @@ class ExercicioController extends Controller
         return View('exercicio.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreExercicioRequest $request)
     {
         Exercicio::create($request->all());
-        return View('exercicio.index')->with('dados',Exercicio::all());
+        return redirect()->route('exercicio.index');
     }
 
     public function show(Exercicio $exercicio)
     {
-        return View('exercicio.show')->with('dados',$exercicio);
+        return view('exercicio.show', compact('exercicio'));
     }
 
     public function edit(Exercicio $exercicio)
     {
-        return View('exercicio.edit')->with('dados',$exercicio);
+        return view('exercicio.edit', compact('exercicio'));
     }
 
-    public function update(Request $request, Exercicio $exercicio)
+    public function update(UpdateExercicioRequest $request, Exercicio $exercicio)
     {
-        $exercicio->update( $request->all() );
-
+        $exercicio->update($request->all());
+        return redirect()->route('exercicio.index');
     }
 
     public function destroy(Exercicio $exercicio)
     {
         $exercicio->delete();
-        return View('exercicio.index')->with('dados',Exercicio::all());
+        return redirect()->route('exercicio.index');
     }
 }
