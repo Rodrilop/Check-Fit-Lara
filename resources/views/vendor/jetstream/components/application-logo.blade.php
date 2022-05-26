@@ -1,1 +1,1 @@
-<img src="{{ asset('img/checkfit.png') }}" class="img-fluid" alt="Imagem responsiva">
+<img src="{{ asset('img/checkfit.png') }}" class="img-fluid rounded mx-auto d-block" alt="Imagem responsiva">

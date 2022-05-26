@@ -38,9 +38,9 @@
                         </div>
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="nm_categoria_alimento" class="block font-medium text-sm text-gray-700">Categoria</label>
-                            <input type="text" name="id" id="id" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <input type="text" name="nm_categoria_alimento" id="nm_categoria_alimento" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('nm_categoria_alimento', $alimento->nm_categoria_alimento) }}" />
-                            @error('id')
+                            @error('nm_categoria_alimento')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
