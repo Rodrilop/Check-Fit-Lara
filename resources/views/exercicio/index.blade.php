@@ -30,7 +30,6 @@
                                         Grupo Muscular
                                     </th>
                                     <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
-
                                     </th>
                                 </tr>
                                 </thead>
@@ -49,7 +48,6 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $exercicio->nm_grupo_muscular_exercicio }}
                                         </td>
-
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{{ route('exercicio.show', $exercicio->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Mostrar</a>
                                             <a href="{{ route('exercicio.edit', $exercicio->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>

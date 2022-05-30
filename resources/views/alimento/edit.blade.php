@@ -20,11 +20,23 @@
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                        <x-jet-label for="nm_categoria_alimento" value="{{ __('Categoria') }}" />
+                        <select id="nm_categoria_alimento" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="nm_categoria_alimento" :value="old('nm_categoria_alimento')" required>
+                            <option selected>{{ old('nm_categoria_alimento', $alimento->nm_categoria_alimento) }}</option>
+                                <option value="Frutas">Frutas</option>
+                                <option value="Verduras">Verduras</option>
+                        </select>
+                        @error('nm_categoria_alimento')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                        </div>
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="nm_alimento" class="block font-medium text-sm text-gray-700">Alimento</label>
                             <input type="text" name="nm_alimento" id="nm_alimento" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('nm_alimento', $alimento->nm_alimento) }}" />
-                            @error('nm_alimentod')
+                            @error('nm_alimento')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
@@ -35,16 +47,7 @@
                             @error('ds_alimento')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
-                        </div>
-                        <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="nm_categoria_alimento" class="block font-medium text-sm text-gray-700">Categoria</label>
-                            <input type="text" name="nm_categoria_alimento" id="nm_categoria_alimento" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('nm_categoria_alimento', $alimento->nm_categoria_alimento) }}" />
-                            @error('nm_categoria_alimento')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
+                        </div>                        
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Editar

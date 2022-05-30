@@ -30,7 +30,6 @@
                                         Categoria
                                     </th>
                                     <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
-
                                     </th>
                                 </tr>
                                 </thead>
@@ -40,7 +39,6 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $alimento->id }}
                                         </td>
-
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $alimento->nm_alimento }}
                                         </td>
@@ -50,7 +48,6 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $alimento->nm_categoria_alimento }}
                                         </td>
-
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{{ route('alimento.show', $alimento->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Mostrar</a>
                                             <a href="{{ route('alimento.edit', $alimento->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>

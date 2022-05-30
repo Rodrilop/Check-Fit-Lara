@@ -11,6 +11,18 @@
                 <form method="post" action="{{ route('exercicio.store') }}">
                     @csrf
                     <div class="shadow overflow-hidden sm:rounded-md">
+                    <div class="px-4 py-5 bg-white sm:p-6">
+                        <x-jet-label for="nm_grupo_muscular_exercicio" value="{{ __('Categoria') }}" />
+                        <select id="nm_grupo_muscular_exercicio" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="nm_grupo_muscular_exercicio" :value="old('nm_grupo_muscular_exercicio')" required>
+                            <option selected>Selecione o Grupo Muscular</option>
+                                <option value="Membros Inferiores">Membros Inferiores</option>
+                                <option value="Bíceps">Bíceps</option>
+                        </select>
+                        @error('nm_categoria_alimento')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                    </div>
+                    <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="nm_exercicio" class="block font-medium text-sm text-gray-700">Exercício</label>
                             <input type="text" name="nm_exercicio" id="nm_exercicio" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -19,22 +31,12 @@
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
-
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="ds_exercicio" class="block font-medium text-sm text-gray-700">Descrição</label>
                             <input type="text" name="ds_exercicio" id="ds_exercicio" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('ds_exercicio', '') }}" />
                             @error('ds_exercicio')
                             <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="px-4 py-5 bg-white sm:p-6">
-                            <label for="nm_grupo_muscular_exercicio" class="block font-medium text-sm text-gray-700">Grupo Muscular</label>
-                            <input type="text" name="nm_grupo_muscular_exercicio" id="nm_grupo_muscular_exercicio" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('nm_grupo_muscular_exercicio', '') }}" />
-                            @error('nm_grupo_muscular_exercicio')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
 
