@@ -1,10 +1,10 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Informação do Perfil') }}
+        {{ __('Profile Information') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Atualize as informações do perfil e o endereço de e-mail da sua conta.') }}
+        {{ __('Update your account\'s profile information and email address.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -54,7 +54,7 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Nome') }}" />
+            <x-jet-label for="name" value="{{ __('Name') }}" />
             <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
@@ -67,16 +67,16 @@
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
-                    {{ __('Seu endereço de e-mail não foi verificado.') }}
+                    {{ __('Your email address is unverified.') }}
 
                     <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900" wire:click.prevent="sendEmailVerification">
-                        {{ __('Clique aqui para reenviar o e-mail de verificaçãol.') }}
+                        {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600">
-                        {{ __('Um novo link de verificação foi enviado para seu endereço de e-mail.') }}
+                        {{ __('A new verification link has been sent to your email address.') }}
                     </p>
                 @endif
             @endif
@@ -85,11 +85,11 @@
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Salvo.') }}
+            {{ __('Saved.') }}
         </x-jet-action-message>
 
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Salvar') }}
+            {{ __('Save') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
