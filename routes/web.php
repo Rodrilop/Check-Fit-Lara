@@ -22,6 +22,7 @@ Route::resource('/alimento', AlimentoController::class);
 Route::resource('/exercicio', ExercicioController::class);
 Route::resource('/treino', TreinoController::class);
 Route::resource('/dieta', DietaController::class);
+Route::resource('/dietaalimento', DietaAlimentoController::class);
 
 Route::middleware([
     'auth:sanctum',

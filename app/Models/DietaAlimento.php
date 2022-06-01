@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dieta extends Model
+class DietaAlimento extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'nm_dieta',
-        'qt_caloria_dieta',
-        'dt_inicio_dieta',
-        'dt_termino_dieta'
+        'qt_dieta_alimentos',
+        'nm_dia_semana_dieta_alimentos',
+        'nm_periodo_dieta_alimentos'
     ];
 }

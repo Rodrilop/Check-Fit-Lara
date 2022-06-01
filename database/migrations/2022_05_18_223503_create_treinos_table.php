@@ -20,9 +20,6 @@ class CreateTreinosTable extends Migration
             $table->decimal('qt_carga_exercicio',3,2);
             $table->string('hr_duracao_exercicio',5);
             $table->timestamps();
-            //-----------Criando chave Estrangeira-----------//
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

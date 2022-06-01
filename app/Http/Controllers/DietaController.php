@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dieta;
+use App\Models\DietaAlimento;
+use App\Models\Alimento;
 use Illuminate\Http\Request;
 
 class DietaController extends Controller
 {
     public function index()
     {
-        return View('dieta.index')->with('dados',Dieta::all());
+        return View('dieta.index')->with('dados',Dieta::all())->with('dietaalimento',DietaAlimento::all());
     }
 
     public function create()
@@ -20,7 +22,7 @@ class DietaController extends Controller
     public function store(Request $request)
     {
         Dieta::create($request->all());
-        return View('dieta.index')->with('dados',Dieta::all());
+        return View('dietaalimento.create');
     }
 
     public function show(Dieta $dieta)
