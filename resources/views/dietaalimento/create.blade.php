@@ -4,15 +4,6 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form method="post" action="{{ route('dieta.store') }}">
                     @csrf
-                    <div class="px-4 py-5 bg-white sm:p-6">
-                            <select id="nm_dieta" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="nm_dieta" :value="old('nm_dieta')" required>
-                                <option selected>{{$dieta}}</option>
-                            </select>
-                            @error('nm_dieta')
-                                <p class="text-sm text-red-600">{{ $message }}</p>
-                            @enderror
-                        </div>                        
-
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <x-jet-label for="alimento_id" value="Alimento" />
                             <select id="alimento_id" class="filtro block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="alimento_id" :value="old('alimento_id')" required>
