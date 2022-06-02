@@ -28,6 +28,7 @@ class User extends Authenticatable
         'email',
         'password',
         'nm_categoria_usuario',
+        'nm_cref_professor',
 
     ];
 

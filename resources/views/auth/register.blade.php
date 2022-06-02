@@ -6,7 +6,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" x-data="{xcategoria:'Pessoal'}" action="{{ route('register') }}">
             @csrf
 
             <div>
@@ -21,7 +21,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Senha') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="nova-senha" />
             </div>
 
             <div class="mt-4">
@@ -30,16 +30,18 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="categoria[]" value="{{ __('Tipo de usuário') }}" />
-                <div class="d-flex flex-row">
-                    <br>
-                    <x-jet-input id="categoria" class="block mt-1" type="checkbox" name="categoria[]" value="{{ __('Profissional') }}"/> 
-                    <x-jet-label value="{{ __('Profissional') }}" />
-                    </br>
-                    <x-jet-input id="categoria" class="block mt-1" type="checkbox" name="categoria[]" value="{{ __('Pessoal') }}" />
-                    <x-jet-label value="{{ __('Pessoal') }}" />
-                </div>
+                <x-jet-label for="categoria" value="{{ __('Cadastrar Como:') }}" />
+                <select name="categoria" x-model="xcategoria" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <option value="Pessoal">Pessoal</option>
+                    <option value="Profissional">Profissional</option>
+                </select>
             </div>
+
+            <div class="mt-4" x-show="xcategoria == 'Profissional'">
+                <x-jet-label for="cref" value="{{ __('CREF') }}" />
+                <x-jet-input id="cref" class="block mt-1 w-full" type="text" name="cref" />
+            </div>
+
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
