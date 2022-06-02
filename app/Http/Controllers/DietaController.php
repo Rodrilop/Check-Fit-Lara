@@ -22,7 +22,7 @@ class DietaController extends Controller
     public function store(Request $request)
     {
         Dieta::create($request->all());
-        return View('dietaalimento.create');
+        return View('dieta.index')->with('dados',Dieta::all())->with('dietaalimento',DietaAlimento::all());
     }
 
     public function show(Dieta $dieta)
