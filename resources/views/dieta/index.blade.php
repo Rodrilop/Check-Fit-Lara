@@ -12,10 +12,14 @@
             </tr>
             @foreach($dados as $d)
             <tr>
+                @if(auth()->user()->nm_categoria_usuario=='Profissional')
+                <td>exibir aluno</td>
+                @endif
                 <td>{{$d->nm_dieta}}</td>
                 <td>{{$d->qt_caloria_dieta}}</td>
                 <td>{{$d->dt_inicio_dieta}}</td>
                 <td>{{$d->dt_termino_dieta}}</td>
+                <td><a href="/dietaalimento/" class="btn btn-primary btn-sm">Detalhes</a></td>
             </tr>
             @endforeach
         </table>
