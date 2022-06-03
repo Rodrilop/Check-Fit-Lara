@@ -37,27 +37,27 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($dados as $d)
+                                @foreach ($dietas as $dieta)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $d->id }}
+                                            {{ $dieta->id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $d->nm_dieta }}
+                                            {{ $dieta->nm_dieta }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $d->qt_caloria_dieta }}
+                                            {{ $dieta->qt_caloria_dieta }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $d->dt_inicio_dieta }}
+                                            {{ $dieta->dt_inicio_dieta }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $d->dt_termino_dieta }}
+                                            {{ $dieta->dt_termino_dieta }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('dieta.show', $d->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Mostrar</a>
-                                            <a href="{{ route('dieta.edit', $d->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>
-                                            <form class="inline-block" action="{{ route('dieta.destroy', $d->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                                            <a href="{{ route('CriaDietaAlimento', $dieta->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Ajustar Dieta</a>
+                                            <a href="{{ route('dieta.edit', $dieta->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>
+                                            <form class="inline-block" action="{{ route('dieta.destroy', $dieta->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Deletar">

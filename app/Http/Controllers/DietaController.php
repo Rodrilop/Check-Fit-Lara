@@ -11,7 +11,7 @@ class DietaController extends Controller
 {
     public function index()
     {
-        return View('dieta.index')->with('dados',Dieta::all())->with('dietaalimento',DietaAlimento::all());
+        return View('dieta.index')->with('dietas',Dieta::all())->with('dietaalimento',DietaAlimento::all());
     }
 
     public function create()
@@ -22,17 +22,17 @@ class DietaController extends Controller
     public function store(Request $request)
     {
         Dieta::create($request->all());
-        return View('dieta.index')->with('dados',Dieta::all())->with('dietaalimento',DietaAlimento::all());
+        return View('dieta.index')->with('dietas',Dieta::all())->with('dietaalimento',DietaAlimento::all());
     }
 
     public function show(Dieta $dieta)
     {
-        return View('dieta.show')->with('dados',$dieta);
+        return View('dieta.show')->with('dietas',$dieta);
     }
 
     public function edit(Dieta $dieta)
     {
-        return View('dieta.edit')->with('dados',$dieta);
+        return View('dieta.edit')->with('dietas',$dieta);
     }
 
     public function update(Request $request, Dieta $dieta)
@@ -44,6 +44,6 @@ class DietaController extends Controller
     public function destroy(Dieta $dieta)
     {
         $dieta->delete();
-        return View('dieta.index')->with('dados',Dieta::all());
+        return View('dieta.index')->with('dietas',Dieta::all());
     }
 }

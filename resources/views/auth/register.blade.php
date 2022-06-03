@@ -5,7 +5,6 @@
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-
         <form method="POST" x-data="{xcategoria:'Pessoal'}" action="{{ route('register') }}">
             @csrf
 
@@ -41,7 +40,6 @@
                 <x-jet-label for="cref" value="{{ __('CREF') }}" />
                 <x-jet-input id="cref" class="block mt-1 w-full" type="text" name="cref" />
             </div>
-
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">

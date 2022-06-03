@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('nm_categoria_usuario');
             $table->string('nm_cref_professor')->unique()->nullable();
+            $table->string('nm_cpf_aluno')->unique()->nullable();
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
