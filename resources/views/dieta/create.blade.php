@@ -15,7 +15,7 @@
                         </div>
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="qt_caloria_dieta" class="block font-medium text-sm text-gray-700">Calorias</label>
-                            <input type="numeric" name="qt_caloria_dieta" id="qt_caloria_dieta" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <input type="text" name="qt_caloria_dieta" id="qt_caloria_dieta" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('qt_caloria_dieta', '') }}" />
                             @error('qt_caloria_dieta')
                             <p class="text-sm text-red-600">{{ $message }}</p>
