@@ -18,6 +18,9 @@
                                 <thead>
                                 <tr>
                                     <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Dieta
+                                    </th>
+                                    <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         ID
                                     </th>
                                     <th scope="col" width="50" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -40,6 +43,9 @@
                                 @foreach ($dietaAlimentos as $dietaalimento)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            {{ $dietaalimento->hasMany("App\Models\Dieta"::class,'id','dieta_id')->first()->nm_dieta }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $dietaalimento->id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -49,7 +55,7 @@
                                             {{ $dietaalimento->nm_periodo_dieta_alimentos }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $dietaalimento->alimento_id }}
+                                            {{ $dietaalimento->hasMany("App\Models\Alimento"::class,'id','alimento_id')->first()->nm_alimento }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $dietaalimento->qt_dieta_alimentos }}
