@@ -29,6 +29,7 @@ class User extends Authenticatable
         'password',
         'nm_categoria_usuario',
         'nm_cref_professor',
+        'nm_cpf_aluno'
 
     ];
 

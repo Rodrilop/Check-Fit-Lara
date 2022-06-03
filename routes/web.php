@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlimentoController;
+use App\Http\Controllers\DietaAlimentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::resource('/exercicio', ExercicioController::class);
 Route::resource('/treino', TreinoController::class);
 Route::resource('/dieta', DietaController::class);
 Route::resource('/dietaalimento', DietaAlimentoController::class);
+
+Route::get('dietaalimento/create/{dieta_id}',[DietaAlimentoController::class,'create'])->name('CriaDietaAlimento');
 
 Route::middleware([
     'auth:sanctum',

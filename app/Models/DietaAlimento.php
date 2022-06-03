@@ -11,6 +11,8 @@ class DietaAlimento extends Model
     protected $fillable=[
         'qt_dieta_alimentos',
         'nm_dia_semana_dieta_alimentos',
-        'nm_periodo_dieta_alimentos'
+        'nm_periodo_dieta_alimentos',
+        'dieta_id',
+        'alimento_id'
     ];
 }
