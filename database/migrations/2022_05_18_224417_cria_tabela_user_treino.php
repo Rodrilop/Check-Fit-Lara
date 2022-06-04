@@ -15,6 +15,11 @@ class CriaTabelaUserTreino extends Migration
     {
         Schema::create('user_treino', function (Blueprint $table) {
             $table->id();
+            //-----------Criando chave Estrangeira-----------//
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('treino_id')->unsigned();
+            $table->foreign('treino_id')->references('id')->on('treinos');
             $table->timestamps();
         });
     }

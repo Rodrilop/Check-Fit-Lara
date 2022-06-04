@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlimentoController;
 use App\Http\Controllers\DietaAlimentoController;
+use App\Http\Controllers\AlunoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::view('/aluno','aluno.create');
+Route::post('aluno/create', [AlunoController::class,'store'])->name('salvaAluno');
