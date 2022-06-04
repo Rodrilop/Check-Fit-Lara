@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlimentoController;
 use App\Http\Controllers\DietaAlimentoController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,18 +15,17 @@ use App\Http\Controllers\DietaAlimentoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+if(Auth::check()){
+    Route::get('/', function () {
+        return view('dashboard');
+    });
+}
+else{
+    Route::get('/', function () {
+        return view('welcome');
+    });
+}
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('/alimento', AlimentoController::class);
-Route::resource('/exercicio', ExercicioController::class);
-Route::resource('/treino', TreinoController::class);
-Route::resource('/dieta', DietaController::class);
-Route::resource('/dietaalimento', DietaAlimentoController::class);
-
-Route::get('dietaalimento/create/{dieta_id}',[DietaAlimentoController::class,'create'])->name('CriaDietaAlimento');
 
 Route::middleware([
     'auth:sanctum',
@@ -35,4 +35,14 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('/alimento', AlimentoController::class);
+    Route::resource('/exercicio', ExercicioController::class);
+    Route::resource('/treino', TreinoController::class);
+    Route::resource('/dieta', DietaController::class);
+    Route::resource('/dietaalimento', DietaAlimentoController::class);
+
+    Route::get('dietaalimento/create/{dieta_id}',[DietaAlimentoController::class,'create'])->name('CriaDietaAlimento');
+
+
 });
