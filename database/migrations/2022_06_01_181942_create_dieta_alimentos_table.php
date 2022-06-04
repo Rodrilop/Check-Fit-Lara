@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('dieta_alimentos', function (Blueprint $table) {
             $table->id();
             $table->decimal('qt_dieta_alimentos',4,2);
+            $table->string('nm_unidade_alimentos',50);
             $table->string('nm_dia_semana_dieta_alimentos',50);
             $table->string('nm_periodo_dieta_alimentos',50);
             $table->timestamps();

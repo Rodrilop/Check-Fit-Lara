@@ -3,10 +3,10 @@
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
         <x-jet-validation-errors class="mb-4" />
-            <div class="mt-5 md:mt-0 md:col-span-2">
+            <div class="px-4 py-5 bg-white sm:p-6">
                 <form method="post" action="{{ route('dietaalimento.store') }}">
                     @csrf
-                    <div >
+                    <div class="px-4 py-5 bg-white sm:p-6">
                     <x-jet-label for="dieta_id" value="Dieta" />
                     <input type="text" name="dieta_id" id="dieta_id" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{$dieta}}" />
