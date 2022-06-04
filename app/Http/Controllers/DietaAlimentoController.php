@@ -6,6 +6,7 @@ use App\Models\DietaAlimento;
 use App\Models\Alimento;
 use App\Models\Dieta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DietaAlimentoController extends Controller
 {
@@ -22,7 +23,16 @@ class DietaAlimentoController extends Controller
 
     public function store(Request $request)
     {
-        DietaAlimento::create($request->all());
+        $validacao = $request->validate([
+            'qt_dieta_alimentos' => 'required|numeric',
+            'nm_periodo_dieta_alimentos' => 'required',
+            'nm_dia_semana_dieta_alimentos' => 'required',
+            'alimento_id' => 'required',
+            'dieta_id' => 'required|exists:dieta_alimentos,dieta_id'
+        ]);
+
+        DietaAlimento::create($validacao);
+        // DietaAlimento::create($request->all());
         return View('dietaalimento.index')->with('dietaAlimentos',DietaAlimento::all())->with('alimento',Alimento::all())->with('dieta',Dieta::all());
     }
 

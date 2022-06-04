@@ -1,6 +1,8 @@
 <x-app-layout>
+    
     <div>
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
+        <x-jet-validation-errors class="mb-4" />
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <form method="post" action="{{ route('dietaalimento.store') }}">
                     @csrf
@@ -22,15 +24,13 @@
                     </div>
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <label for="qt_dieta_alimentos" class="block font-medium text-sm text-gray-700">Quantidade</label>
-                        <input type="numeric" name="qt_dieta_alimentos" id="qt_dieta_alimentos" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('qt_dieta_alimentos', '') }}" />
-                        @error('qt_dieta_alimentos')
-                        <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        <input type="text" name="qt_dieta_alimentos" id="qt_dieta_alimentos" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('qt_dieta_alimentos', '') }}" />
                     </div>
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <x-jet-label for="nm_dia_semana_dieta_alimentos" value="Dia" />
-                        <select id="nm_dia_semana_dieta_alimentos" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="nm_dia_semana_dieta_alimentos" :value="old('nm_dia_semana_dieta_alimentos')" required>
-                            <option selected>Selecione o Dia</option>
+                        <select id="nm_dia_semana_dieta_alimentos" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="nm_dia_semana_dieta_alimentos" 
+                         value="old('nm_dia_semana_dieta_alimentos')">
+                            <option disabled selected>Selecione o Dia</option>
                             <option value="Segunda">Segunda</option>
                             <option value="Terça">Terça</option>
                             <option value="Quarta">Quarta</option>
@@ -46,7 +46,7 @@
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <x-jet-label for="nm_periodo_dieta_alimentos" value="Refeição" />
                         <select id="nm_periodo_dieta_alimentos" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="nm_periodo_dieta_alimentos" :value="old('nm_periodo_dieta_alimentos')" required>
-                            <option selected>Selecione o Periodo</option>
+                            <option disabled selected>Selecione o Periodo</option>
                             <option value="Café da Manhã">Café da Manhã</option>
                             <option value="Almoço">Almoço</option>
                             <option value="Lanche">Lanche</option>
