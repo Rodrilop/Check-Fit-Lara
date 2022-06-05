@@ -23,7 +23,17 @@ class AlimentoController extends Controller
 
     public function store(StoreAlimentoRequest $request)
     {
-        Alimento::create($request->all());
+        $validacao = $request->validate([
+            'alimento' => 'required|string|alpha|unique:alimentos,nm_alimento|max:150',
+            'descricao' => 'required|string|alpha|max:250',
+            'categoria' => 'required|string|alpha|max:200'
+        ]);
+
+        Alimento::create([
+            'nm_alimento' => $validacao['alimento'],
+            'ds_alimento' => $validacao['descricao'],
+            'nm_categoria_alimento' => $validacao['categoria'],
+        ]);
         return redirect()->route('alimento.index');
     }
 

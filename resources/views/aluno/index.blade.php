@@ -37,7 +37,7 @@
                                 @foreach ($alunos as $aluno)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $aluo->id }}
+                                            {{ $aluno->id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $aluno->name }}
