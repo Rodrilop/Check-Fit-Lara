@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AlunoController extends Controller
 {
 
     public function index()
     {
-        return view('profile');
+        return view('aluno.index')->with('alunos',User::where('nm_categoria_usuario','=','Aluno')->get());
     }
 
     public function create()
@@ -22,11 +23,13 @@ class AlunoController extends Controller
 
     public function store(Request $request)
     {
+        
         $validacao = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'categoria' => ['required','string'],
-            'cpf' => 'nullable|numeric|unique:users,nm_cpf_aluno'
+            'cpf' => 'nullable|numeric|unique:users,nm_cpf_aluno',
+            'professor_id' => 'required|exists:users,id'
         ]);
     
         User::create([
@@ -34,8 +37,10 @@ class AlunoController extends Controller
             'email' => $validacao['email'],
             'password' => Hash::make($request['cpf']),
             'nm_categoria_usuario'=>$validacao['categoria'],
-            'nm_cpf_aluno'=>$validacao['cpf']
-    ]);
+            'nm_cpf_aluno'=>$validacao['cpf'],
+            'professor_id'=>$validacao['professor_id']
+        ]);
+
 
     }
 

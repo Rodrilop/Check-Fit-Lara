@@ -34,6 +34,12 @@
                 </select>
             </div>
 
+            <div class="mt-4" x-show="xcategoria == 'Aluno'">
+                <x-jet-label for="professor_id" value="{{ __('Professor') }}" />
+                <x-jet-input id="professor_id" class="block mt-1 w-full" type="text" name="professor_id" value='{{Auth::user()->id}}' />
+            </div>
+            
+
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-jet-label for="terms">
@@ -52,6 +58,7 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
+                <button onclick="window.location.href='/dashboard';">Voltar</button>
                 <x-jet-button class="ml-4">
                     Cadastrar
                 </x-jet-button>

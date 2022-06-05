@@ -16,16 +16,15 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-if(Auth::check()){
+if(Auth::check()==null){
     Route::get('/', function () {
         return view('dashboard');
     });
 }
-else{
-    Route::get('/', function () {
-        return view('welcome');
-    });
-}
+
+Route::get('/', function () {
+    return view('welcome');
+});
 
 
 Route::middleware([
@@ -48,5 +47,8 @@ Route::middleware([
 
 });
 
-Route::view('/aluno','aluno.create');
-Route::post('aluno/create', [AlunoController::class,'store'])->name('salvaAluno');
+// Route::view('/aluno','aluno.create');
+Route::post('/aluno/create', [AlunoController::class,'store'])->name('salvaAluno');
+Route::get('/aluno', [AlunoController::class,'index']);
+Route::resource('/aluno', AlunoController::class);
+

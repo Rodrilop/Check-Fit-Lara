@@ -11,31 +11,37 @@
                 </div>
 
                 <!-- Navigation Links -->
+                @if(Auth::user()->nm_categoria_usuario=='Profissional')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-jet-nav-link href="{{ route('aluno.index') }}" :active="request()->routeIs('alimento.index')">
+                        {{ __('Alunos') }}
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('alimento.index') }}" :active="request()->routeIs('alimento.index')">
-                        {{ __('Alimentos') }}
-                    </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('exercicio.index') }}" :active="request()->routeIs('exercicio.index')">
-                        {{ __('Exercicios') }}
-                    </x-jet-nav-link>
-                </div>
+                @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('treino.index') }}" :active="request()->routeIs('treino.index')">
                         {{ __('Treinos') }}
                     </x-jet-nav-link>
                 </div>
+                @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dieta.index') }}" :active="request()->routeIs('dieta.index')">
-                        {{ __('Dieta') }}
+                    <x-jet-nav-link href="{{ route('exercicio.index') }}" :active="request()->routeIs('exercicio.index')">
+                        {{ __('Exercicios') }}
                     </x-jet-nav-link>
                 </div>
+                @endif
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('dieta.index') }}" :active="request()->routeIs('dieta.index')">
+                        {{ __('Dietas') }}
+                    </x-jet-nav-link>
+                </div>
+                @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('alimento.index') }}" :active="request()->routeIs('alimento.index')">
+                        {{ __('Alimentos') }}
+                    </x-jet-nav-link>
+                </div>
+                @endif
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -88,7 +94,7 @@
                         </x-jet-dropdown>
                     </div>
                 @endif
-
+            
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <x-jet-dropdown align="right" width="48">
