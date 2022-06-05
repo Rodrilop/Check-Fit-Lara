@@ -10,7 +10,7 @@
                     <x-jet-label for="dieta_id" value="Dieta" />
                     <input type="text" name="dieta_id" id="dieta_id" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{$dieta}}" />
-                    </div>
+                    </div>                    
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <x-jet-label for="alimento_id" value="Alimento" />
                         <select id="alimento_id" class="filtro block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="alimento_id" :value="old('alimento_id')" required>
@@ -18,34 +18,41 @@
                             <option value="{{$a->id}}">{{$a->nm_alimento}}</option>
                         @endforeach
                         </select>
-                        @error('alimento_id')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
                     </div>
+
                     <div class="px-4 py-5 bg-white sm:p-6">
-                        <label for="qt_dieta_alimentos" class="block font-medium text-sm text-gray-700">Quantidade</label>
-                        <input type="text" name="qt_dieta_alimentos" id="qt_dieta_alimentos" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('qt_dieta_alimentos', '') }}" />
+                        <label for="quantidade" class="block font-medium text-sm text-gray-700">Quantidade</label>
+                        <input type="text" name="quantidade" id="quantidade" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('quantidade', '') }}" />
                     </div>
+
                     <div class="px-4 py-5 bg-white sm:p-6">
-                        <x-jet-label for="nm_dia_semana_dieta_alimentos" value="Dia" />
-                        <select id="nm_dia_semana_dieta_alimentos" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="nm_dia_semana_dieta_alimentos" 
-                         value="old('nm_dia_semana_dieta_alimentos')">
+                        <x-jet-label for="medida" value="Medida" />
+                        <select id="medida" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="medida" 
+                         value="old('medida')">
+                            <option value="g">(g) grama(s)</option>
+                            <option value="kg">(kg) Kilograma(s)</option>
+                            <option value="unidade">Unidade(s)</option>
+                        </select>
+                    </div>
+
+                    <div class="px-4 py-5 bg-white sm:p-6">
+                        <x-jet-label for="dia" value="Dia" />
+                        <select id="dia" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="dia" 
+                         value="old('dia')">
                             <option disabled selected>Selecione o Dia</option>
-                            <option value="Segunda">Segunda</option>
-                            <option value="Terça">Terça</option>
-                            <option value="Quarta">Quarta</option>
-                            <option value="Quinta">Quinta</option>
-                            <option value="Sexta">Sexta</option>
+                            <option value="Segunda">Segunda-Feira</option>
+                            <option value="Terça">Terça-Feira</option>
+                            <option value="Quarta">Quarta-Feira</option>
+                            <option value="Quinta">Quinta-Feira</option>
+                            <option value="Sexta">Sexta-Feira</option>
                             <option value="Sábado">Sábado</option>
                             <option value="Domingo">Domingo</option>
                         </select>
-                        @error('nm_dia_semana_dieta')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
                     </div>
+
                     <div class="px-4 py-5 bg-white sm:p-6">
-                        <x-jet-label for="nm_periodo_dieta_alimentos" value="Refeição" />
-                        <select id="nm_periodo_dieta_alimentos" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="nm_periodo_dieta_alimentos" :value="old('nm_periodo_dieta_alimentos')" required>
+                        <x-jet-label for="periodo" value="Refeição" />
+                        <select id="periodo" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="periodo" :value="old('periodo')" required>
                             <option disabled selected>Selecione o Periodo</option>
                             <option value="Café da Manhã">Café da Manhã</option>
                             <option value="Almoço">Almoço</option>
@@ -53,10 +60,8 @@
                             <option value="Janta">Janta</option>
                             <option value="Ceia">Ceia</option>
                         </select>
-                        @error('nm_periodo_dieta')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
                     </div>
+
                     <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                         <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                             Cadastrar

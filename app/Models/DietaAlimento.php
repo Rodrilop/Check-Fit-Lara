@@ -10,6 +10,7 @@ class DietaAlimento extends Model
     use HasFactory;
     protected $fillable=[
         'qt_dieta_alimentos',
+        'nm_unidade_alimentos',
         'nm_dia_semana_dieta_alimentos',
         'nm_periodo_dieta_alimentos',
         'dieta_id',

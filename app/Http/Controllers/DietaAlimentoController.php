@@ -6,7 +6,7 @@ use App\Models\DietaAlimento;
 use App\Models\Alimento;
 use App\Models\Dieta;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class DietaAlimentoController extends Controller
 {
@@ -23,16 +23,32 @@ class DietaAlimentoController extends Controller
 
     public function store(Request $request)
     {
+        $uniqueRule = Rule::unique('dieta_alimentos')->where(
+            function ($query) use ($request){
+                return $query->where('alimento_id',$request['alimento_id']??'')
+                ->where('nm_dia_semana_dieta_alimentos',$request['dia']??'')
+                ->where('nm_periodo_dieta_alimentos',$request['periodo']??'')
+                ->where('dieta_id',$request['dieta_id']??'');
+            });
+
         $validacao = $request->validate([
-            'qt_dieta_alimentos' => 'required|numeric',
-            'nm_periodo_dieta_alimentos' => 'required',
-            'nm_dia_semana_dieta_alimentos' => 'required',
-            'alimento_id' => 'required',
-            'dieta_id' => 'required|exists:dieta_alimentos,dieta_id'
+            'quantidade' => 'required|integer|digits_between:1,5',
+            'periodo' => 'required|string|max:20',
+            'dia' => 'required|alpha_dash|string|max:20',
+            'alimento_id' => ['required','exists:alimentos,id',$uniqueRule],
+            'dieta_id' => 'required|exists:dietas,id',
+            'medida' => 'required|string|alpha'
         ]);
 
-        DietaAlimento::create($validacao);
-        // DietaAlimento::create($request->all());
+        DietaAlimento::create([
+            'qt_dieta_alimentos' => $validacao['quantidade'],
+            'nm_periodo_dieta_alimentos' => $validacao['periodo'],
+            'nm_dia_semana_dieta_alimentos' => $validacao['dia'],
+            'alimento_id' => $validacao['alimento_id'],
+            'dieta_id' => $validacao['dieta_id'],
+            'nm_unidade_alimentos' => $validacao['medida'],
+        ]);
+
         return View('dietaalimento.index')->with('dietaAlimentos',DietaAlimento::all())->with('alimento',Alimento::all())->with('dieta',Dieta::all());
     }
 

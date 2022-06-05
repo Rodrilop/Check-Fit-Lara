@@ -25,7 +25,7 @@ class AlimentoController extends Controller
     {
         $validacao = $request->validate([
             'alimento' => 'required|string|alpha|unique:alimentos,nm_alimento|max:150',
-            'descricao' => 'required|string|alpha|max:250',
+            'descricao' => 'required|string|alpha_num|max:250',
             'categoria' => 'required|string|alpha|max:200'
         ]);
 

@@ -28,7 +28,7 @@ class AlunoController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'categoria' => ['required','string'],
-            'cpf' => 'nullable|numeric|unique:users,nm_cpf_aluno',
+            'cpf' => 'required|numeric|unique:users,nm_cpf_aluno',
             'professor_id' => 'required|exists:users,id'
         ]);
     
@@ -41,7 +41,7 @@ class AlunoController extends Controller
             'professor_id'=>$validacao['professor_id']
         ]);
 
-
+        return AlunoController::index();
     }
 
     /**
