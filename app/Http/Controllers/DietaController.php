@@ -21,7 +21,19 @@ class DietaController extends Controller
 
     public function store(Request $request)
     {
-        Dieta::create($request->all());
+        $validacao = $request->validate([
+            'nome' => 'required|string|alpha_num|unique:dietas,nm_dieta|max:150',
+            'calorias' => 'required|integer|digits_between:1,5',
+            'inicio' => 'required|date|before:termino',
+            'termino' => 'required|date|after:inicio',
+        ]);
+
+        Dieta::create([
+            'nm_dieta' => $validacao['nome'],
+            'qt_caloria_dieta' => $validacao['calorias'],
+            'dt_inicio_dieta' => $validacao['inicio'],
+            'dt_termino_dieta' => $validacao['termino']
+        ]);
         return View('dieta.index')->with('dietas',Dieta::all())->with('dietaalimento',DietaAlimento::all());
     }
 

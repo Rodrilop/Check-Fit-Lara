@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('dieta_alimentos', function (Blueprint $table) {
             $table->id();
             $table->decimal('qt_dieta_alimentos',4,2);
-            $table->string('nm_unidade_alimentos',50);
+            $table->string('nm_unidade_alimentos',10);
             $table->string('nm_dia_semana_dieta_alimentos',50);
             $table->string('nm_periodo_dieta_alimentos',50);
             $table->timestamps();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->bigInteger('alimento_id')->unsigned();
             $table->foreign('alimento_id')->references('id')->on('alimentos');
             //-----------Criando Restrição-----------//
-            $table->unique(['alimento_id','nm_dia_semana_dieta_alimentos','nm_periodo_dieta_alimentos'],'restricao');        
+            $table->unique(['dieta_id','alimento_id','nm_dia_semana_dieta_alimentos','nm_periodo_dieta_alimentos'],'restricao');        
         });
     }
 
