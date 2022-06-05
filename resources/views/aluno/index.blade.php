@@ -37,7 +37,7 @@
                                 @foreach ($alunos as $aluno)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $aluo->id }}
+                                            {{ $aluno->id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                             {{ $aluno->name }}
@@ -49,9 +49,9 @@
                                             {{ $aluno->treino_id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('alimento.show', $alimento->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Mostrar</a>
-                                            <a href="{{ route('alimento.edit', $alimento->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>
-                                            <form class="inline-block" action="{{ route('alimento.destroy', $alimento->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                                            <a href="{{ route('aluno.show', $aluno->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Mostrar</a>
+                                            <a href="{{ route('aluno.edit', $aluno->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>
+                                            <form class="inline-block" action="{{ route('aluno.destroy', $aluno->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Deletar">

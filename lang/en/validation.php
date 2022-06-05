@@ -43,7 +43,7 @@ return [
     'digits_between' => 'The :attribute must be between :min and :max digits.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
-    'email' => 'The :attribute must be a valid email address.',
+    'email' => 'O :attribute deve ser um endereço de e-mail válido',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'enum' => 'O :attribute selecionado é inválido.',
     'exists' => 'O :attribute selecionado é inválido.',

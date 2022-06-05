@@ -162,31 +162,41 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        @if(Auth::user()->nm_categoria_usuario=='Profissional')
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-jet-responsive-nav-link>
-            </div>
-            <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('alimento.index') }}" :active="request()->routeIs('alimento.index')">
-                {{ __('Alimentos') }}
+            <x-jet-responsive-nav-link href="{{ route('aluno.index') }}" :active="request()->routeIs('aluno.index')">
+                {{ __('Alunos') }}
             </x-jet-responsive-nav-link>
         </div>
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('exercicio.index') }}" :active="request()->routeIs('exercicio.index')">
-                {{ __('Exercicios') }}
-            </x-jet-responsive-nav-link>
-        </div>
+        @endif
+        @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('treino.index') }}" :active="request()->routeIs('treino.index')">
                 {{ __('Treinos') }}
             </x-jet-responsive-nav-link>
         </div>
+        @endif
+        @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('exercicio.index') }}" :active="request()->routeIs('exercicio.index')">
+                {{ __('Exercicios') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        @endif
+        @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dieta.index') }}" :active="request()->routeIs('dieta.index')">
                 {{ __('Dietas') }}
             </x-jet-responsive-nav-link>
         </div>
+        @endif
+        @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('alimento.index') }}" :active="request()->routeIs('alimento.index')">
+                {{ __('Alimentos') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        @endif
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
