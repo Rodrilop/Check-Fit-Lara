@@ -34,6 +34,7 @@
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
+                                $idAtual = {{Auth::id()}}
                                 @foreach ($alunos as $aluno)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -43,10 +44,18 @@
                                             {{ $aluno->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            @if(empty($aluno->dieta_id))
+                                               <button type="button" onclick="">Adicionar Dieta</button>
+                                            @else
                                             {{ $aluno->dieta_id }}
+                                            @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            @if(empty($aluno->treino_id))
+                                                <btn>Adicionar Treino</btn>
+                                            @else
                                             {{ $aluno->treino_id }}
+                                            @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{{ route('aluno.show', $aluno->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Mostrar</a>
@@ -68,4 +77,5 @@
 
         </div>
     </div>
+    
 </x-app-layout>

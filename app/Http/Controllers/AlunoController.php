@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Dieta;
+use App\Models\Treino;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class AlunoController extends Controller
 {
 
     public function index()
     {
-        return view('aluno.index')->with('alunos',User::where('nm_categoria_usuario','=','Aluno')->get());
+        $user = Auth::id();
+        return view('aluno.index')->with('alunos',User::where(
+            'nm_categoria_usuario','=','Aluno')->get()->where('professor_id','=',$user))
+            ->with('dietas',Dieta::all())->with('treinos',Treino::all());
     }
 
     public function create()
@@ -35,7 +41,7 @@ class AlunoController extends Controller
         User::create([
             'name' => $validacao['name'],
             'email' => $validacao['email'],
-            'password' => Hash::make($request['cpf']),
+            'password' => Hash::make($validacao['cpf']),
             'nm_categoria_usuario'=>$validacao['categoria'],
             'nm_cpf_aluno'=>$validacao['cpf'],
             'professor_id'=>$validacao['professor_id']

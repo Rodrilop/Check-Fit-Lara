@@ -5,6 +5,7 @@ use App\Http\Controllers\AlimentoController;
 use App\Http\Controllers\DietaAlimentoController;
 use App\Http\Controllers\AlunoController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,5 @@ Route::post('/aluno/create', [AlunoController::class,'store'])->name('salvaAluno
 Route::get('/aluno', [AlunoController::class,'index']);
 Route::resource('/aluno', AlunoController::class);
 
+// Route::post('/register','Auth\RegisteredUserController@store');
+Route::post('/register', [RegisteredUserController::class,'store']);
