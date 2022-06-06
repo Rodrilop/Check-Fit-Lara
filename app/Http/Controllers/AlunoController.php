@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StoreAlunoRequest;
+use App\Http\Requests\UpdateAlunoRequest;
 
 class AlunoController extends Controller
 {
@@ -61,37 +64,34 @@ class AlunoController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit($user)
     {
-        //
+        $aluno = User::find($user);
+        return view('aluno.edit')->with('aluno',$aluno)
+                                 ->with('dietas',Dieta::all())
+                                 ->with('treinos',Treino::all());
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(UpdateAlunoRequest $request, User $user)
     {
-        //
+        $validacao = $request->validate([
+            'dieta_id' => 'required|exists:dietas,id',
+            'treino_id' => 'nullable|exists:treinos,id',
+        ]);
+    
+        $aluno = User::find($user);
+
+        $aluno->dietas()->attach($validacao['dieta_id']);
+        $aluno->treinos()->attach($validacao['treino_id']);
+
+
+        return AlunoController::index();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 }

@@ -42,16 +42,17 @@ Route::middleware([
     Route::resource('/treino', TreinoController::class);
     Route::resource('/dieta', DietaController::class);
     Route::resource('/dietaalimento', DietaAlimentoController::class);
+    Route::resource('/aluno', AlunoController::class);
 
     Route::get('dietaalimento/create/{dieta_id}',[DietaAlimentoController::class,'create'])->name('CriaDietaAlimento');
 
 
 });
 
-// Route::view('/aluno','aluno.create');
-Route::post('/aluno/create', [AlunoController::class,'store'])->name('salvaAluno');
-Route::get('/aluno', [AlunoController::class,'index']);
-Route::resource('/aluno', AlunoController::class);
+
+// Route::post('/aluno/create', [AlunoController::class,'store'])->name('salvaAluno');
+// Route::get('/aluno', [AlunoController::class,'index']);
+
 
 // Route::post('/register','Auth\RegisteredUserController@store');
 Route::post('/register', [RegisteredUserController::class,'store']);

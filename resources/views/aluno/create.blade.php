@@ -8,7 +8,7 @@
         </div>
 
         <x-jet-validation-errors class="mb-4" />
-        <form method="POST" x-data="{xcategoria:'Aluno'}" action="{{ route('salvaAluno') }}">
+        <form method="POST" x-data="{xcategoria:'Aluno'}" action="{{ route('aluno.store') }}">
             @csrf
 
             <div>

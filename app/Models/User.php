@@ -10,6 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Dieta;
+use App\Models\Treino;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -18,6 +21,13 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function dietas(){
+        return $this->belongsToMany(Dieta::class);
+    }
+
+    public function treinos(){
+        return $this->belongsToMany(Treino::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

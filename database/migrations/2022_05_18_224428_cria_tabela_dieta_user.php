@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CriaTabelaUserTreino extends Migration
+class CriaTabelaDietaUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CriaTabelaUserTreino extends Migration
      */
     public function up()
     {
-        Schema::create('user_treino', function (Blueprint $table) {
+        Schema::create('dieta_user', function (Blueprint $table) {
             $table->id();
             //-----------Criando chave Estrangeira-----------//
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('treino_id')->unsigned();
-            $table->foreign('treino_id')->references('id')->on('treinos');
+            $table->bigInteger('dieta_id')->unsigned();
+            $table->foreign('dieta_id')->references('id')->on('dietas');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CriaTabelaUserTreino extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_treino');
+        Schema::dropIfExists('user_dieta');
     }
 }

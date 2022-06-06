@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dieta extends Model
 {
+    public function users(){
+        return $this->belongsToMany('App\User');
+    }
+
     use HasFactory;
     protected $fillable=[
         'nm_dieta',
