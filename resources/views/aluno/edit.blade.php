@@ -38,8 +38,8 @@
                         <div class="shadow overflow-hidden sm:rounded-md">
                             <div class="px-4 py-5 bg-white sm:p-6">
                             <x-jet-label for="treino" value="{{ __('Escolher Treino') }}" />
-                            <select id="treino" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="treino_id" value="old( 'dieta' )">
-                            @if(!empty($aluno->dieta_id))
+                            <select id="treino" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="treino_id" value="old( 'treino' )">
+                            @if(!empty($aluno->treino_id))
                                 <option value="{{$aluno->treino_id}}" selected> {{ $treinos->find($aluno->treino_id)->nm_treino }} </option>
                             @else
                                 <option value="" selected> Selecione um treino </option>
