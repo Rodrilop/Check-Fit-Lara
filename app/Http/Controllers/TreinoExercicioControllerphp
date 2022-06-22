@@ -27,7 +27,7 @@ class TreinoExercicioController extends Controller
             function ($query) use ($request){
                 return $query->where('exercicio_id',$request['exercicio_id']??'')
                 ->where('nm_dia_semana_treino_exercicios',$request['dia']??'')
-                ->where('dieta_id',$request['dieta_id']??'');
+                ->where('treino_id',$request['treino_id']??'');
             });
 
         $validacao = $request->validate([
@@ -42,7 +42,7 @@ class TreinoExercicioController extends Controller
             'treino_id' => $validacao['treino_id']
         ]);
 
-        return View('treinoexercicio.index')->with('treinoExercicio',TreinoExercicio::all())->with('exercicio',Exercicio::all())->with('dieta',Dieta::all());
+        return View('treinoexercicio.index')->with('treinoExercicio',TreinoExercicio::all())->with('exercicio',Exercicio::all())->with('treino',Treino::all());
     }
 
     public function show(TreinoExercicio $treinoExercicio)
