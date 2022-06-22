@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dieta;
 use App\Models\DietaAlimento;
-use App\Models\Alimento;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DietaController extends Controller
@@ -50,12 +50,15 @@ class DietaController extends Controller
     public function update(Request $request, Dieta $dieta)
     {
         $dieta->update( $request->all() );
-
     }
 
     public function destroy(Dieta $dieta)
     {
         $dieta->delete();
         return View('dieta.index')->with('dietas',Dieta::all());
+    }
+
+    public function vinculaDietaUser(Dieta $dieta, User $user){
+        $dieta->users()->attach($user);
     }
 }

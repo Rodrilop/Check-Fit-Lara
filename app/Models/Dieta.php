@@ -7,10 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dieta extends Model
 {
-    public function users(){
-        return $this->belongsToMany('App\User');
-    }
-
     use HasFactory;
     protected $fillable=[
         'nm_dieta',
@@ -18,4 +14,8 @@ class Dieta extends Model
         'dt_inicio_dieta',
         'dt_termino_dieta'
     ];
+
+    public function users(){
+        return $this->belongsToMany(related: User::class)->withTimestamps();
+    }
 }

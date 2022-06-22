@@ -16,10 +16,12 @@ class CriaTabelaDietaUser extends Migration
         Schema::create('dieta_user', function (Blueprint $table) {
             $table->id();
             //-----------Criando chave Estrangeira-----------//
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->bigInteger('dieta_id')->unsigned();
-            $table->foreign('dieta_id')->references('id')->on('dietas');
+            // $table->bigInteger('user_id')->unsigned();
+            // $table->foreign('user_id')->references('id')->on('users');
+            $table->foreignId(column: 'user_id')->constrained();
+            // $table->bigInteger('dieta_id')->unsigned();
+            // $table->foreign('dieta_id')->references('id')->on('dietas');
+            $table->foreignId(column: 'dieta_id')->constrained();
             $table->timestamps();
         });
     }

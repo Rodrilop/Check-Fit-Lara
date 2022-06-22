@@ -9,10 +9,9 @@
         <div class="max-w-4xl mx-auto py-10 sm:px-6 lg:px-8">
         <x-jet-validation-errors class="mb-4" />
             <div class="mt-5 md:mt-0 md:col-span-2">
-                <form method="post" action="{{ route('aluno.update', 5) }}">
+                <form method="post" action="{{ route('aluno.update', $aluno->id) }}">
                     @csrf
                     @method('PUT')
-                    {{$aluno}}
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <label for="nome" disabled class="block font-medium text-sm text-gray-700">Nome</label>
