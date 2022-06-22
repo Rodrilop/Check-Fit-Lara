@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlimentoController;
+use App\Http\Controllers\ExercicioController;
 use App\Http\Controllers\DietaAlimentoController;
+use App\Http\Controllers\TreinoExercicioController;
 use App\Http\Controllers\AlunoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -40,12 +42,13 @@ Route::middleware([
     Route::resource('/alimento', AlimentoController::class);
     Route::resource('/exercicio', ExercicioController::class);
     Route::resource('/treino', TreinoController::class);
+    Route::resource('/treinoexercicio', TreinoExercicioController::class);
     Route::resource('/dieta', DietaController::class);
     Route::resource('/dietaalimento', DietaAlimentoController::class);
     Route::resource('/aluno', AlunoController::class);
 
     Route::get('dietaalimento/create/{dieta_id}',[DietaAlimentoController::class,'create'])->name('CriaDietaAlimento');
-
+    Route::get('treinoexercicio/create/{treino_id}',[TreinoExercicioController::class,'create'])->name('CriaTreinoExercicio');
 
 });
 

@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Tabela de Dietas
+            Tabela de Treinos
         </h2>
     </x-slot>
 
     <div>
         <div class="max-w-6xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="block mb-8">
-                <a href="{{ route('dieta.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Cadastrar Dieta</a>
+                <a href="{{ route('treino.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Cadastrar treino</a>
             </div>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -24,40 +24,40 @@
                                     Nome
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Calorias
+                                    Repetição
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Data de Início
+                                    Carga
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Data de Término
+                                    Duração
                                     </th>
                                     <th scope="col" width="200" class="px-6 py-3 bg-gray-50">
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($dietas as $dieta)
+                                @foreach ($treinos as $treino)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $dieta->id }}
+                                            {{ $treino->id }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $dieta->nm_dieta }}
+                                            {{ $treino->nm_treino }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $dieta->qt_caloria_dieta }}
+                                            {{ $treino->qt_repeticao_exercicio }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $dieta->dt_inicio_dieta }}
+                                            {{ $treino->qt_carga_exercicio }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ $dieta->dt_termino_dieta }}
+                                            {{ $treino->hr_duracao_exercicio }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('CriaDietaAlimento', $dieta->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Ajustar Dieta</a>
-                                            <a href="{{ route('dieta.edit', $dieta->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>
-                                            <form class="inline-block" action="{{ route('dieta.destroy', $dieta->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                                            <a href="{{ route('CriaTreinoExercicio', $treino->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Ajustar treino</a>
+                                            <a href="{{ route('treino.edit', $treino->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>
+                                            <form class="inline-block" action="{{ route('treino.destroy', $treino->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Deletar">
