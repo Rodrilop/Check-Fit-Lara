@@ -74,24 +74,45 @@ class AlunoController extends Controller
     }
 
 
-    public function update(UpdateAlunoRequest $request, User $user)
+    public function update(UpdateAlunoRequest $request, int $id)
     {
         $validacao = $request->validate([
-            'dieta_id' => 'required|exists:dietas,id',
-            'treino_id' => 'nullable|exists:treinos,id',
+            'dieta_id' => 'nullable|exists:dietas,id|unique:dieta_user,dieta_id,user_id',
+            'treino_id' => 'nullable|exists:treinos,id|unique:treino_user,treino_id,user_id',
         ]);
-    
-        $aluno = User::find($user);
 
-        $aluno->dietas()->attach($validacao['dieta_id']);
-        $aluno->treinos()->attach($validacao['treino_id']);
+        $relacaoDieta = $request->input('dietaAluno');
+        $relacaoTreino = $request->input('treinoAluno');
 
+        if($relacaoDieta!=null){
+            foreach($relacaoDieta as $remover){
+                User::find($id)->dietas()->detach($remover);
+            }
+        }
+
+        if($relacaoTreino!=null){
+            foreach($relacaoTreino as $remover){
+                User::find($id)->treinos()->detach($remover);
+            }
+        }
+
+        if($request->input('dieta_id')!=null){ 
+            User::find($id)->dietas()->attach($validacao['dieta_id']); 
+        }
+        
+        if($request->input('treino_id')!=null){ 
+            User::find($id)->treinos()->attach($validacao['treino_id']);
+        }
 
         return AlunoController::index();
     }
 
-    // public function destroy($id)
-    // {
-    //     //
-    // }
+    public function destroy($id)
+    {
+        $aluno = User::find($id);
+
+        $aluno->update(['professor_id'=>null]);
+
+        return AlunoController::index();
+    }
 }

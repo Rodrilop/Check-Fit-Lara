@@ -21,3 +21,7 @@ Gere uma chave para rodar a aplicação
 ~~~php
 php artisan key:generate
 ~~~
+
+
+-----------------------------------------------------------------
+trabalhando com pivots https://vegibit.com/laravel-belongstomany-example/

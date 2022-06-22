@@ -57,8 +57,4 @@ class DietaController extends Controller
         $dieta->delete();
         return View('dieta.index')->with('dietas',Dieta::all());
     }
-
-    public function vinculaDietaUser(Dieta $dieta, User $user){
-        $dieta->users()->attach($user);
-    }
 }

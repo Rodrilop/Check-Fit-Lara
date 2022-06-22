@@ -43,26 +43,30 @@
                                             {{ $aluno->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            @if(empty($aluno->dieta_id))
-                                               <button type="button" onclick="">Adicionar Dieta</button>
+                                            @if($aluno->dietas()->count()==0)
+                                               <p>Adicionar Dieta</p>
                                             @else
-                                            {{ $aluno->dieta_id }}
+                                            @foreach($aluno->dietas()->get() as $dietaAluno)
+                                                {{$dietaAluno["nm_dieta"]}}
+                                            @endforeach
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            @if(empty($aluno->treino_id))
-                                                <btn>Adicionar Treino</btn>
+                                            @if($aluno->treinos()->count()==0)
+                                                <p>Adicionar Treino</p>
                                             @else
-                                            {{ $aluno->treino_id }}
+                                            @foreach($aluno->treinos()->get() as $treinoAluno)
+                                                {{$treinoAluno["nm_dieta"]}}
+                                            @endforeach
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{{ route('aluno.show', $aluno->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Mostrar</a>
                                             <a href="{{ route('aluno.edit', $aluno->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>
-                                            <form class="inline-block" action="{{ route('aluno.destroy', $aluno->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                                            <form class="inline-block" action="{{ route('aluno.destroy', $aluno->id) }}" method="POST" onsubmit="return confirm('Tem certeza que desvincular o aluno?');">
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Deletar">
+                                                <input type="submit" class="text-red-600 hover:text-red-900 mb-2 mr-2" value="Remover Aluno">
                                             </form>
                                         </td>
                                     </tr>

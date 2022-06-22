@@ -18,24 +18,18 @@
                             <input type="text" disabled name="nome" id="nome" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('nome', $aluno->name) }}" />
                         </div>
-
-                        <div class="shadow overflow-hidden sm:rounded-md">
-                            <div class="px-4 py-5 bg-white sm:p-6">
+                        
+                        <div class="px-4 py-5 bg-white sm:p-6">
                             <x-jet-label for="dieta" value="{{ __('Escolher Dieta') }}" />
                             <select id="dieta" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="dieta_id" value="old( 'dieta' )" required>
-                            @if(!empty($aluno->dieta_id))
-                                <option value="{{$aluno->dieta_id}}" selected> {{ $dietas->find($aluno->dieta_id)->nm_dieta }} </option>
-                            @else
-                                <option disabled value="{{$aluno->dieta_id}}" selected> Selecione uma dieta </option>
-                            @endif  
+                                <option disabled selected> Selecione uma dieta </option>
                                 @foreach($dietas as $dieta)
                                 <option value="{{$dieta->id}}">{{$dieta->nm_dieta}}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="shadow overflow-hidden sm:rounded-md">
-                            <div class="px-4 py-5 bg-white sm:p-6">
+                        <div class="px-4 py-5 bg-white sm:p-6">
                             <x-jet-label for="treino" value="{{ __('Escolher Treino') }}" />
                             <select id="treino" class="block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="treino_id" value="old( 'treino' )">
                             @if(!empty($aluno->treino_id))
@@ -49,10 +43,28 @@
                             </select>
                         </div>
 
+                        <div class="px-4 py-5 bg-white sm:p-6 form-check">
+                        @if($aluno->dietas()->count()!=0)
+                            <p class="block font-medium text-sm text-gray-900 ">Selecione a(s) dieta(s) que deseja remover do aluno</p>
+                            @foreach($aluno->dietas()->get() as $dietaAluno)
+                                <input class="form-check-input rounded-md shadow-sm mt-1 block" type="checkbox" value="{{$dietaAluno['id']}}" name="dietaAluno[]">
+                                <label class="form-check-label inline-block text-gray-600">{{$dietaAluno['nm_dieta']}}</label>
+                            @endforeach
+                        @endif
+                        </div>
+
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                        @if($aluno->treinos()->count()!=0)
+                            <p class="block font-medium text-sm text-gray-800">Selecione o(s) treino(s) que deseja remover do aluno</p>
+                            @foreach($aluno->treinos()->get() as $treinoAluno)
+                                <input class="form-input rounded-md shadow-sm mt-1 block" type="checkbox" value="{{$treinoAluno['id']}}" name="treinoAluno[]">{{$treinoAluno['nm_treino']}}<br/>
+                            @endforeach
+                        @endif
+                        </div>
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6">
                             <button class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                Editar
+                                Alterar Aluno
                             </button>
                         </div>
                     </div>
