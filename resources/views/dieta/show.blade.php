@@ -44,22 +44,26 @@
                                         {{ $dietas->dt_termino_dieta }}
                                     </td>
                                 </tr>
-                                @foreach($ref as $refeicao)
-                                <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{$refeicao->nm_dia_semana_dieta_alimentos}}
-                                    </th>
-                                </tr>
-                                <tr class="border-b">
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        {{$refeicao->nm_periodo_dieta_alimentos}}
-                                    </th>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
-                                        @foreach($refeicao->get() as $alimento)
-                                        {{ $alimento->belongsTo("App\Models\Alimento"::class,'alimento_id','id')->first()->nm_alimento}} 
+                                @foreach ($diasNm as $d)
+                                    @foreach($ref->where('dieta_id','=',$dietas->id)->where('nm_dia_semana_dieta_alimentos','=',$d) as $dia)
+                                    <tr class="border-b">
+                                        <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {{$d}}
+                                        </th>
+                                    </tr>
+                                        @foreach ($periodosNm as $p)
+                                            @foreach($ref->where('dieta_id','=',$dietas->id)->where('nm_dia_semana_dieta_alimentos','=',$d)->where('nm_periodo_dieta_alimentos','=',$p) as $refeicao)     
+                                                <tr class="border-b">    
+                                                    <th scope="col" class="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        {{$p}}
+                                                    </th>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 bg-white divide-y divide-gray-200">
+                                                    {{ $refeicao->belongsTo("App\Models\Alimento"::class,'alimento_id','id')->first()->nm_alimento}} {{$refeicao->qt_dieta_alimentos}}{{$refeicao->nm_unidade_alimentos}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         @endforeach
-                                    </td>
-                                </tr>
+                                    @endforeach
                                 @endforeach
                             </table>
                         </div>
@@ -67,7 +71,11 @@
                 </div>
             </div>
             <div class="block mt-8">
+                @if(Auth::user()->nm_categoria_usuario=='Aluno')
+                <a href="{{ route( 'dashboard') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Inicio</a>
+                @else
                 <a href="{{ route('dieta.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Voltar para Lista</a>
+                @endif
             </div>
         </div>
     </div>

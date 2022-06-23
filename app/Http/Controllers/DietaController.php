@@ -39,10 +39,16 @@ class DietaController extends Controller
 
     public function show($id)
     {
+        $nmDia = ['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'];
+        $nmPeriodo = ['Café da Manhã','Almoço','Lanche','Janta','Ceia'];
+
         $dieta = Dieta::find($id);
         $refeicoes = $dieta->hasMany(DietaAlimento::class)->get();
+        // dd($refeicoes);
 
-        return View('dieta.show')->with('dietas',$dieta)->with('ref',$refeicoes);
+        return View('dieta.show')->with('dietas',$dieta)->with('ref',$refeicoes)
+        ->with('diasNm',$nmDia)
+        ->with('periodosNm',$nmPeriodo);
     }
 
     public function edit(int $dietaId)

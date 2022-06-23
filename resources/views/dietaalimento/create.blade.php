@@ -7,10 +7,20 @@
                 <form method="post" action="{{ route('dietaalimento.store') }}">
                     @csrf
                     <div class="px-4 py-5 bg-white sm:p-6">
+                    
                     <x-jet-label for="dieta_id" value="Dieta" />
-                    <input type="text" name="dieta_id" id="dieta_id" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{$dieta}}" />
-                    </div>                    
+                    <select id="dieta_id" class="filtro block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="dieta_id" :value="old('dieta_id')" required>
+                        @if($novaDieta==null)
+                            <option disabled selected>Selecione a qual Dieta deseja adicionar a Refeição</option>
+                            @foreach($dieta as $d)
+                            <option value="{{$d->id}}">{{$d->nm_dieta}}</option>
+                            @endforeach
+                        @else
+                            <option selected value="{{$novaDieta->id}}">{{$novaDieta->nm_dieta}}</option>
+                        @endif
+                        </select>
+                    </div>
+
                     <div class="px-4 py-5 bg-white sm:p-6">
                         <x-jet-label for="alimento_id" value="Alimento" />
                         <select id="alimento_id" class="filtro block font-medium text-sm text-gray-700 rounded-md shadow-sm mt-1 block w-full" type="select" name="alimento_id" :value="old('alimento_id')" required>
@@ -31,7 +41,7 @@
                          value="old('medida')">
                             <option value="g">(g) grama(s)</option>
                             <option value="kg">(kg) Kilograma(s)</option>
-                            <option value="unidade">Unidade(s)</option>
+                            <option value="unidade(s)">Unidade(s)</option>
                         </select>
                     </div>
 

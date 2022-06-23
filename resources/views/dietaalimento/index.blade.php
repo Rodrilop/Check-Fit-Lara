@@ -58,7 +58,7 @@
                                             {{ $dietaalimento->belongsTo("App\Models\Alimento"::class,'alimento_id','id')->first()->nm_alimento }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            {{ intval($dietaalimento->qt_dieta_alimentos) }}
+                                            {{ intval($dietaalimento->qt_dieta_alimentos) }} {{ $dietaalimento->nm_unidade_alimentos  }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{{ route('dietaalimento.show', $dietaalimento->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Mostrar</a>

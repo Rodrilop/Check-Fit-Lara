@@ -1,4 +1,5 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+    
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -18,30 +19,49 @@
                     </x-jet-nav-link>
                 </div>
                 @endif
+
+                @if(Auth::user()->nm_categoria_usuario=='Profissional'||Auth::user()->nm_categoria_usuario=='Pessoal'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('treino.index') }}" :active="request()->routeIs('treino.index')">
                         {{ __('Treinos') }}
                     </x-jet-nav-link>
                 </div>
-                @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+                
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('exercicio.index') }}" :active="request()->routeIs('exercicio.index')">
                         {{ __('Exercicios') }}
                     </x-jet-nav-link>
                 </div>
-                @endif
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dieta.index') }}" :active="request()->routeIs('dieta.index')">
                         {{ __('Dietas') }}
                     </x-jet-nav-link>
                 </div>
-                @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('dietaalimento.index') }}" :active="request()->routeIs('dietaalimento.index')">
+                        {{ __('Refeicoes') }}
+                    </x-jet-nav-link>
+                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('alimento.index') }}" :active="request()->routeIs('alimento.index')">
                         {{ __('Alimentos') }}
                     </x-jet-nav-link>
                 </div>
                 @endif
+
+                
+                @if(Auth::user()->nm_categoria_usuario=='Aluno')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('dieta.show',Auth::user()->dietas()->first()->id) }}">
+                        {{ __('Refeicoes') }}
+                    </x-jet-nav-link>
+                </div>
+                @endif
+
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -169,31 +189,42 @@
             </x-jet-responsive-nav-link>
         </div>
         @endif
-        @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+        @if(Auth::user()->nm_categoria_usuario=='Profissional'||Auth::user()->nm_categoria_usuario=='Pessoal'))
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('treino.index') }}" :active="request()->routeIs('treino.index')">
                 {{ __('Treinos') }}
             </x-jet-responsive-nav-link>
         </div>
-        @endif
-        @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+        
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('exercicio.index') }}" :active="request()->routeIs('exercicio.index')">
                 {{ __('Exercicios') }}
             </x-jet-responsive-nav-link>
         </div>
-        @endif
-        @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+        
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dieta.index') }}" :active="request()->routeIs('dieta.index')">
                 {{ __('Dietas') }}
             </x-jet-responsive-nav-link>
         </div>
-        @endif
-        @if(Auth::user()->nm_categoria_usuario=='Profissional'||'Pessoal')
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('dietaalimento.index') }}" :active="request()->routeIs('dietaalimento.index')">
+                {{ __('Refeições') }}
+            </x-jet-responsive-nav-link>
+        </div>
+    
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('alimento.index') }}" :active="request()->routeIs('alimento.index')">
                 {{ __('Alimentos') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        @endif
+     
+        @if(Auth::user()->nm_categoria_usuario=='Aluno')
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('dieta.show',Auth::user()->dietas()->first()->id) }}" :active="request()->routeIs('dieta.index')">
+                {{ __('Refeições') }}
             </x-jet-responsive-nav-link>
         </div>
         @endif

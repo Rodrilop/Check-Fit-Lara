@@ -18,7 +18,9 @@ class DietaAlimentoController extends Controller
 
     public function create(Request $request)
     {
-        return View('dietaalimento.create')->with('alimento',Alimento::all())->with('dieta',$request->dieta_id);
+        return View('dietaalimento.create')->with('alimento',Alimento::all())
+        ->with('novaDieta',Dieta::find($request->dieta_id))
+        ->with('dieta',Dieta::all());
     }
 
     public function store(Request $request)
