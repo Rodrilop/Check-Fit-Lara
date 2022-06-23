@@ -55,7 +55,8 @@
                                             {{ $dieta->dt_termino_dieta }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('CriaDietaAlimento', $dieta->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Ajustar Dieta</a>
+                                            <a href="{{ route('dieta.show', $dieta->id) }}" class="text-green-600 hover:text-blue-900 mb-2 mr-2">Detalhes</a>
+                                            <a href="{{ route('CriaDietaAlimento', $dieta->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">Configurar Dieta</a>
                                             <a href="{{ route('dieta.edit', $dieta->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Editar</a>
                                             <form class="inline-block" action="{{ route('dieta.destroy', $dieta->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir?');">
                                                 <input type="hidden" name="_method" value="DELETE">

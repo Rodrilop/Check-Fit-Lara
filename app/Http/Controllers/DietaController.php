@@ -34,27 +34,46 @@ class DietaController extends Controller
             'dt_inicio_dieta' => $validacao['inicio'],
             'dt_termino_dieta' => $validacao['termino']
         ]);
-        return View('dieta.index')->with('dietas',Dieta::all())->with('dietaalimento',DietaAlimento::all());
+        return DietaController::index();
     }
 
-    public function show(Dieta $dieta)
+    public function show($id)
     {
-        return View('dieta.show')->with('dietas',$dieta);
+        $dieta = Dieta::find($id);
+        $refeicoes = $dieta->hasMany(DietaAlimento::class)->get();
+
+        return View('dieta.show')->with('dietas',$dieta)->with('ref',$refeicoes);
     }
 
-    public function edit(Dieta $dieta)
+    public function edit(int $dietaId)
     {
-        return View('dieta.edit')->with('dietas',$dieta);
+        return View('dieta.edit')->with('dietas',Dieta::find($dietaId));
     }
 
-    public function update(Request $request, Dieta $dieta)
+    public function update(Request $request, int $dietaId)
     {
-        $dieta->update( $request->all() );
+        $validacao = $request->validate([
+            'nome' => 'required|string|alpha_num|unique:dietas,nm_dieta|max:150',
+            'calorias' => 'required|integer|digits_between:1,5',
+            'inicio' => 'required|date|before:termino',
+            'termino' => 'required|date|after:inicio',
+        ]);
+
+        $dieta = Dieta::find($dietaId);
+        
+        $dieta->update([
+            'nm_dieta' => $validacao['nome'],
+            'qt_caloria_dieta' => $validacao['calorias'],
+            'dt_inicio_dieta' => $validacao['inicio'],
+            'dt_termino_dieta' => $validacao['termino']
+        ]);
+
+        return DietaController::index();
     }
 
     public function destroy(Dieta $dieta)
     {
         $dieta->delete();
-        return View('dieta.index')->with('dietas',Dieta::all());
+        return DietaController::index();
     }
 }
