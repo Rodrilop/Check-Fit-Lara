@@ -20,7 +20,7 @@
                 </div>
                 @endif
 
-                @if(Auth::user()->nm_categoria_usuario=='Profissional'||Auth::user()->nm_categoria_usuario=='Pessoal'))
+                @if(Auth::user()->nm_categoria_usuario=='Profissional'||Auth::user()->nm_categoria_usuario=='Pessoal')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('treino.index') }}" :active="request()->routeIs('treino.index')">
                         {{ __('Treinos') }}
